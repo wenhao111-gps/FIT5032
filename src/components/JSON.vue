@@ -178,6 +178,10 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  font-weight: bold;
+}
+
 .lab-section {
   background-color: white;
   padding: 20px;
@@ -219,9 +223,5 @@ li {
   padding: 10px;
   margin: 5px 0;
   border-radius: 5px;
-}
-
-.highlighted {
-  background-color: yellow;
 }
 </style>
