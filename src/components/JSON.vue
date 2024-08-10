@@ -12,12 +12,7 @@
       <!-- Activity 6: Render a list containing author names and their birth years. Hint: Make use of the v-for directive to iterate through the array of authors. -->
       <!-- TODO: CODE TO RENDER LIST OF AUTHORS HERE -->
       <ul>
-        <li
-          v-for="author in authors"
-          :key="author.id"
-          :class="{ highlighted: author.name === selectedAuthorId }"
-          @click="selectedAuthor(author.id)"
-        >
+        <li v-for="author in authors" :key="author.id">
           {{ author.name }} ({{ author.birthYear }})
         </li>
       </ul>
@@ -27,12 +22,7 @@
       <p>Authors born after 1850:</p>
       <!-- TODO: CODE TO RENDER LIST OF AUTHORS HERE -->
       <ul>
-        <li
-          v-for="author in modernAuthors"
-          :key="author.id"
-          :class="{ highlighted: author.id === selectedAuthorId }"
-          @click="selectedAuthor(author.id)"
-        >
+        <li v-for="author in modernAuthors" :key="author.id">
           {{ author.name }} ({{ author.birthYear }})
         </li>
       </ul>
@@ -122,6 +112,11 @@
     <section class="lab-section">
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
+      <ul>
+        <li v-for="author in authorList" :key="author.id">
+          {{ author.name }}
+        </li>
+      </ul>
     </section>
   </div>
 </template>
@@ -135,6 +130,14 @@ import authors from '../assets/json/authors.json'
 import bookstores from '../assets/json/bookstores.json'
 
 const showMessage = ref(false)
+
+const authorList = ref(authors)
+
+const selectedAuthorId = ref(null)
+
+const selectAuthor = (id) => {
+  selectedAuthorId.value = id
+}
 
 // Activity 2: Get authors born after 1850
 const modernAuthors = computed(() => {
@@ -223,5 +226,10 @@ li {
   padding: 10px;
   margin: 5px 0;
   border-radius: 5px;
+}
+
+.highlight {
+  backdrop-color: yellow;
+  color: white;
 }
 </style>
