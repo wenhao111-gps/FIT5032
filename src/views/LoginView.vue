@@ -43,7 +43,41 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import DataTable from 'primevue/datatable'
+import Column from 'primevue/column'
+
+const formData = ref({
+  username: '',
+  password: ''
+})
+
+const submittedData = ref([])
+
+const submitForm = () => {
+  validateName(true)
+  if (!errors.value.username && !errors.value.password) {
+    submittedData.value.push({ ...formData.value })
+    clearForm()
+  }
+}
+
+const clearForm = () => {
+  formData.value = {
+    username: '',
+    password: ''
+  }
+}
+
+const errors = ref({
+  username: null,
+  password: null,
+  confirmPassword: null,
+  gender: null,
+  email: null
+})
+</script>
 
 <style scoped>
 .card {
