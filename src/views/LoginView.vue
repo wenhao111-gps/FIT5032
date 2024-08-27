@@ -3,19 +3,11 @@
     <div class="row">
       <div class="col-sm-8 offset-sm-2">
         <h1 class="heading">Login</h1>
-        <form @submit.prevent="submitForm">
+        <form @submit.prevent="login">
           <div class="row justify-content-center">
             <div class="col-6 mb-3">
               <label for="username" class="form-label">Username:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                @blur="() => validateName(true)"
-                @input="() => validateName(false)"
-                v-model="formData.username"
-              />
-              <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
+              <input type="text" class="form-control" id="username" v-model="formData.username" />
             </div>
           </div>
 
@@ -26,11 +18,8 @@
                 type="password"
                 class="form-control"
                 id="password"
-                @blur="() => validatePassword(true)"
-                @input="() => validatePassword(false)"
                 v-model="formData.password"
               />
-              <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
             </div>
           </div>
 
@@ -45,38 +34,23 @@
 
 <script setup>
 import { ref } from 'vue'
-import DataTable from 'primevue/datatable'
-import Column from 'primevue/column'
+import { useRouter } from 'vue-router'
 
 const formData = ref({
   username: '',
   password: ''
 })
 
-const submittedData = ref([])
+const router = useRouter()
 
-const submitForm = () => {
-  validateName(true)
-  if (!errors.value.username && !errors.value.password) {
-    submittedData.value.push({ ...formData.value })
-    clearForm()
+const login = () => {
+  if (formData.value.username === 'admin' && formData.value.password === '123456') {
+    router.push('/about')
+    localStorage.setItem('token', 'admin')
+  } else {
+    alert('The username or password is wrong')
   }
 }
-
-const clearForm = () => {
-  formData.value = {
-    username: '',
-    password: ''
-  }
-}
-
-const errors = ref({
-  username: null,
-  password: null,
-  confirmPassword: null,
-  gender: null,
-  email: null
-})
 </script>
 
 <style scoped>

@@ -5,11 +5,19 @@
       Welcome to our digital library! We're dedicated to providing a vast collection of books and
       resources to our community.
     </p>
+    <button @click="logOff">Log off</button>
   </div>
 </template>
 
 <script setup>
-// No script needed for now
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const logOff = () => {
+  localStorage.removeItem('token')
+  router.push('/login')
+}
 </script>
 
 <style scoped>

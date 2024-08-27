@@ -3,7 +3,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import apiFun from './network/api'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
