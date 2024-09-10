@@ -4,12 +4,13 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'vue-router'
 const email = ref('')
 const password = ref('')
+const role = ref('')
 const router = useRouter()
 const auth = getAuth()
 const signin = () => {
-  signInWithEmailAndPassword(getAuth(), email.value, password.value)
+  signInWithEmailAndPassword(getAuth(), email.value, password.value, role.value)
     .then((data) => {
-      console.log('Firebase Register Successful!')
+      console.log('Firebase login Successful!')
       router.push('/')
       console.log(auth.currentUser)
     })
