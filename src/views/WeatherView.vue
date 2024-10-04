@@ -70,6 +70,14 @@ export default {
       } catch (error) {
         console.error('Error fetching weather data:', error)
       }
+    },
+    async searchByCity() {
+      if (this.city) {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${apikey}`
+        await this.fetchWeatherData(url)
+      } else {
+        console.error('Please enter a city name')
+      }
     }
   }
 }

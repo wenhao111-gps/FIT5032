@@ -18,7 +18,7 @@ export default {
 
 <template>
   <div class="main-container">
-    <header>
+    <header v-if="showHeader">
       <BHeader />
     </header>
 

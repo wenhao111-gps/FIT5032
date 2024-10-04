@@ -22,6 +22,7 @@ export default {
         console.error('Error fetching book count:', error)
         this.error = error
         this.jsondata = null
+        this.count = null
       }
     }
   },
