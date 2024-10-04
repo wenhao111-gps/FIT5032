@@ -1,5 +1,19 @@
-<script setup>
+<script>
 import BHeader from './components/BHeader.vue'
+import CountBookAPI from './views/CountBookAPI.vue'
+
+export default {
+  name: 'App',
+  components: {
+    BHeader,
+    CountBookAPI
+  },
+  computed: {
+    showHeader() {
+      return this.$route.name !== 'CountBookAPI'
+    }
+  }
+}
 </script>
 
 <template>
